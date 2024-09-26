@@ -1,36 +1,32 @@
-import React, {useContext, useState} from 'react';
+import React, {createContext, useContext, useState} from 'react';
 import './global.css';
 import type {PropsWithChildren} from 'react';
 import {
-    ActivityIndicator,
-    Button,
     SafeAreaView,
     ScrollView,
-    StatusBar,
     StyleSheet,
-    Text,
     useColorScheme,
-    View,
 } from 'react-native';
 
-import {
-    Colors,
-    DebugInstructions,
-    Header,
-    LearnMoreLinks,
-    ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+// import {
+//     Colors,
+//     DebugInstructions,
+//     Header,
+//     LearnMoreLinks,
+//     ReloadInstructions,
+// } from 'react-native/Libraries/NewAppScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {GluestackUIProvider} from './src/components/ui/gluestack-ui-provider';
 import {enableScreens} from 'react-native-screens';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {AuthContext, AuthProvider} from './src/providers/AuthProvider';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { FavouriteIcon, Icon, PlayIcon, SearchIcon, SettingsIcon } from './src/components/ui/icon';
 import Home from './src/screens/Home';
 import Search from './src/screens/Search';
 import Profil from './src/screens/Profil';
 import Wishlist from './src/screens/Wishlist';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {AuthContext, AuthProvider} from './src/providers/AuthProvider';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from './src/screens/Login';
 import Splash from './src/screens/Splash';
 
@@ -100,12 +96,49 @@ const LoginScreen = () => {
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
+
+    const isDarkMode = useColorScheme() === 'dark';
+
     return (
-        <Tab.Navigator screenOptions={{headerShown: false}}>
-            <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Search" component={SearchScreen} />
-            <Tab.Screen name="Wishlist" component={WishlistScreen} />
-            <Tab.Screen name="Profil" component={ProfilScreen} />
+        <Tab.Navigator screenOptions={{
+            headerShown: false, 
+            tabBarActiveTintColor:  "#F2C94C",   // Couleur du texte et icône actif
+            tabBarInactiveTintColor: isDarkMode ? '#fff' : '#000', // Couleur du texte et icône inactif
+            tabBarStyle: {
+                // Gestion dark and light mode
+                backgroundColor: isDarkMode ? '#000' : '#fff', // Couleur de fond 
+                paddingBottom: 5,               // Ajustement du padding
+                height: 60,                     // Ajuster la hauteur
+            },
+        }}>
+            <Tab.Screen name="Home" component={HomeScreen} options={{
+                tabBarIcon: ({size,focused,color}) => {
+                    return (
+                        <Icon as={PlayIcon} className={focused ? 'text-primary-500 w-8 h-8' : 'text-white w-8 h-8'}  />
+                    );
+                  },
+            }} />
+            <Tab.Screen name="Search" component={SearchScreen} options={{
+                tabBarIcon: ({size,focused,color}) => {
+                    return (
+                        <Icon as={SearchIcon} className={focused ? 'text-primary-500 w-8 h-8' : 'text-white w-8 h-8'} />
+                    );
+                  },
+            }} />
+            <Tab.Screen name="Wishlist" component={WishlistScreen} options={{
+                tabBarIcon: ({size,focused,color}) => {
+                    return (
+                        <Icon as={FavouriteIcon} className={focused ? 'text-primary-500 w-8 h-8' : 'text-white w-8 h-8'} />
+                    );
+                  },
+            }} />
+            <Tab.Screen name="Profil" component={ProfilScreen} options={{
+                tabBarIcon: ({size,focused,color}) => {
+                    return (
+                        <Icon as={SettingsIcon} className={focused ? 'text-primary-500 w-8 h-8' : 'text-white w-8 h-8'} />
+                    );
+                  },
+            }} />
         </Tab.Navigator>
     );
 }
@@ -132,7 +165,8 @@ const AuthNavigator = () => {
 
 export default function App(): React.JSX.Element {
     const colorScheme = useColorScheme();
-    const [colorMode, setColorMode] = useState<"light" | "dark">(colorScheme === 'dark' ? 'dark' : 'light');
+    const [colorMode, setColorMode] = useState<'light' | 'dark'>(colorScheme === 'dark' ? 'dark' : 'light');
+
     return (
         <SafeAreaProvider>
             <GluestackUIProvider mode={colorMode}>
