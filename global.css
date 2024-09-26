@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* .layout{
+    padding: 0 20px;
+} */
+.btn{
+    /* @apply p-4 flex justify-center h-auto; */
+    padding: 1rem;
+    display: flex;
+    height: auto !important;
+}

@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    useColorScheme,
+    View,
 } from 'react-native';
 
 import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
+    Colors,
+    DebugInstructions,
+    Header,
+    LearnMoreLinks,
+    ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import Compteur from '../components/Compteur';
+import { Image } from '@/components/ui/image';
+import { Button } from '@/components/ui/button';
+import { ButtonText } from '@/components/ui/button';
+import { AuthContext } from '@/providers/AuthProvider';
 
 const styles = StyleSheet.create({
     sectionContainer: {
@@ -25,58 +28,41 @@ const styles = StyleSheet.create({
         width: '100%',
         flex: 1,
     },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
+    sectionTitle: {
+        fontSize: 24,
+        fontWeight: '600',
+    },
+    sectionDescription: {
+        marginTop: 8,
+        fontSize: 18,
+        fontWeight: '400',
+    },
+    highlight: {
+        fontWeight: '700',
+    },
 });
 
 export default function Home(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+    const { logout } = useContext(AuthContext);
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <View>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        {/* <View
-              style={{
-                  backgroundColor: isDarkMode ? Colors.black : Colors.white,
-              }}>
-              <Section title="Step Lorem">
-                  Edit oqiyuybzbruf <Text style={styles.highlight}>App.tsx</Text> to
-                  change this screen and then come back to see your edits.
-              </Section>
-              <Section title="See Your Changes">
-                  <ReloadInstructions />
-              </Section>
-              <Section title="Debug">
-                  <DebugInstructions />
-              </Section>
-              <Section title="Learn More">
-                  Read the docs to discover what to do next:
-              </Section>
-              <LearnMoreLinks />
-              </View> */}
-        <Compteur />
-      </ScrollView>
-    </View>
-  );
+    return (
+        <View>
+            {/* // On va chercher une image en local  */}
+            <Image
+                size="md"
+                source={require('@/assets/images/home.png')}
+                alt="image"
+                className='w-full h-96 object-cover object-center'
+            />
+            <ScrollView
+                contentInsetAdjustmentBehavior="automatic">
+                <Button
+                    className="btn mt-8 h-auto"
+                    size="lg"
+                    onPress={logout}>
+                    <ButtonText>Logout</ButtonText>
+                </Button>
+            </ScrollView>
+        </View>
+    );
 }

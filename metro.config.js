@@ -7,7 +7,13 @@ const { withNativeWind } = require('nativewind/metro')
  * @type {import('metro-config').MetroConfig}
  */
 const config = mergeConfig(getDefaultConfig(__dirname), {
-  /* your config */
+    resolver: {
+        // On ajoute les chemins d'alias pour @ et @/components qui pointent vers le dossier src
+        extraNodeModules : {
+            '@': __dirname + '/src',
+            '@/components': __dirname + '/src/components',
+        },
+    },
 });
 
 module.exports = withNativeWind(config, { input: './global.css'})
