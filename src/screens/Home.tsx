@@ -1,5 +1,7 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
+
 import {
+    FlatList,
     SafeAreaView,
     ScrollView,
     StatusBar,
@@ -9,17 +11,15 @@ import {
     View,
 } from 'react-native';
 
-import {
-    Colors,
-    DebugInstructions,
-    Header,
-    LearnMoreLinks,
-    ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import { Image } from '@/components/ui/image';
-import { Button } from '@/components/ui/button';
-import { ButtonText } from '@/components/ui/button';
-import { AuthContext } from '@/providers/AuthProvider';
+import {Button, ButtonIcon} from '@/components/ui/button';
+import {ButtonText} from '@/components/ui/button';
+import Layout from '@/components/Layout';
+import {HStack} from '@/components/ui/hstack';
+import {Box} from '@/components/ui/box';
+import {Heading} from '@/components/ui/heading';
+import Category from '@/components/Category';
+import Pub from '@/components/Pub';
+import ImageSlider from '@/components/ImageSlider';
 
 const styles = StyleSheet.create({
     sectionContainer: {
@@ -42,27 +42,71 @@ const styles = StyleSheet.create({
     },
 });
 
+const DATA = [
+    {
+        id: '1',
+        active: false,
+    },
+    {
+        id: '2',
+        active: true,
+    },
+    {
+        id: '3',
+        active: false,
+    },
+    {
+        id: '4',
+        active: false,
+    },
+    {
+        id: '5',
+        active: false,
+    },
+];
+
 export default function Home(): React.JSX.Element {
-    const { logout } = useContext(AuthContext);
 
     return (
-        <View>
-            {/* // On va chercher une image en local  */}
-            <Image
-                size="md"
-                source={require('@/assets/images/home.png')}
-                alt="image"
-                className='w-full h-96 object-cover object-center'
-            />
-            <ScrollView
-                contentInsetAdjustmentBehavior="automatic">
-                <Button
-                    className="btn mt-8 h-auto"
-                    size="lg"
-                    onPress={logout}>
-                    <ButtonText>Logout</ButtonText>
-                </Button>
-            </ScrollView>
-        </View>
+        <ScrollView contentInsetAdjustmentBehavior="automatic" decelerationRate="fast">
+            <Box className='bg-white dark:bg-black'>
+                <ImageSlider />
+                <Layout>
+                    {/* // On va chercher une image en local  */}
+                    {/* <Splide aria-label="My Favorite Images">
+                        <SplideSlide>
+                            <Image
+                                size="md"
+                                source={require('@/assets/images/home.png')}
+                                alt="image"
+                                className="w-full h-96 object-cover object-center"
+                            />
+                        </SplideSlide>
+                        <SplideSlide>
+                            <Image
+                                size="md"
+                                source={require('@/assets/images/home.png')}
+                                alt="image"
+                                className="w-full h-96 object-cover object-center"
+                            />
+                        </SplideSlide>
+                    </Splide> */}
+
+                    <Category title="Marvel studios" filters={{
+                        'genres' : [28],
+                    }} />
+                    <Category title="Best Movies" filters={{
+                        "sort_by": "vote_average.desc",
+                        "showStars" : true,
+                    }} />
+                    <Pub
+                        image={require('@/assets/images/pub_black_friday.png')}
+                        title="Black friday is here!"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Viverra sociis pulvinar auctor nibh nibh iaculis id."
+                    />
+                </Layout>
+            </Box>
+        </ScrollView>
     );
 }

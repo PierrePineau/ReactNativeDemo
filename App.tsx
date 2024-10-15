@@ -109,6 +109,7 @@ const AppNavigator = () => {
                 backgroundColor: isDarkMode ? '#000' : '#fff', // Couleur de fond 
                 paddingBottom: 5,               // Ajustement du padding
                 height: 60,                     // Ajuster la hauteur
+                borderTopColor: 'transparent',  // Couleur de la bordure
             },
         }}>
             <Tab.Screen name="Home" component={HomeScreen} options={{

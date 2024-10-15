@@ -12,3 +12,8 @@
     display: flex;
     height: auto !important;
 }
+
+/* .bg-gradient{
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(6,38,27,1) 100%);
+} */

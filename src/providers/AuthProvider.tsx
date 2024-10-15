@@ -14,23 +14,28 @@ const AuthProvider = ({children}: any) => {
     const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [token, setToken] = useState<string | null>(null);
 
     const login = async ({username, password}: any) => {
         // if (username !== 'pierre@gmail.com' || password !== '123456') {
         //     return Promise.reject();
         // }
         await AsyncStorage.setItem('userToken', 'loremsimpsum');
+        setToken('loremsimpsum');
         setIsAuthenticated(true);
         return Promise.resolve();
     };
 
     const logout = async () => {
         await AsyncStorage.removeItem('userToken');
+        setToken(null);
         setIsAuthenticated(false);
     };
 
     const checkAuth = async () => {
-        const token = await AsyncStorage.getItem('userToken');
+        if (!token) {
+            setToken(await AsyncStorage.getItem('userToken') ?? null);
+        }
         if (token) {
             setIsAuthenticated(true);
         } else {
