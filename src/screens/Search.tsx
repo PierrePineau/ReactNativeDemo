@@ -17,24 +17,6 @@ export default function Search(): React.JSX.Element {
             <Box className="bg-white dark:bg-black">
                 <Layout>
                     {/* // On va chercher une image en local  */}
-                    {/* <Splide aria-label="My Favorite Images">
-                    <SplideSlide>
-                        <Image
-                            size="md"
-                            source={require('@/assets/images/home.png')}
-                            alt="image"
-                            className="w-full h-96 object-cover object-center"
-                        />
-                    </SplideSlide>
-                    <SplideSlide>
-                        <Image
-                            size="md"
-                            source={require('@/assets/images/home.png')}
-                            alt="image"
-                            className="w-full h-96 object-cover object-center"
-                        />
-                    </SplideSlide>
-                </Splide> */}
 
                     <Button
                         className="btn mt-8 h-auto rounded-lg"

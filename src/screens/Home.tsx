@@ -72,33 +72,13 @@ export default function Home(): React.JSX.Element {
             <Box className='bg-white dark:bg-black'>
                 <ImageSlider />
                 <Layout>
-                    {/* // On va chercher une image en local  */}
-                    {/* <Splide aria-label="My Favorite Images">
-                        <SplideSlide>
-                            <Image
-                                size="md"
-                                source={require('@/assets/images/home.png')}
-                                alt="image"
-                                className="w-full h-96 object-cover object-center"
-                            />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <Image
-                                size="md"
-                                source={require('@/assets/images/home.png')}
-                                alt="image"
-                                className="w-full h-96 object-cover object-center"
-                            />
-                        </SplideSlide>
-                    </Splide> */}
-
-                    <Category title="Marvel studios" filters={{
+                    {/* <Category title="Marvel studios" filters={{
                         'genres' : [28],
                     }} />
                     <Category title="Best Movies" filters={{
                         "sort_by": "vote_average.desc",
                         "showStars" : true,
-                    }} />
+                    }} /> */}
                     <Pub
                         image={require('@/assets/images/pub_black_friday.png')}
                         title="Black friday is here!"
