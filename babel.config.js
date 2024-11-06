@@ -5,9 +5,9 @@ module.exports = {
         'nativewind/babel',
     ],
     plugins: [
-        "@babel/plugin-transform-class-properties",
-        "@babel/plugin-transform-optional-chaining",
-        "@babel/plugin-transform-private-methods",
+        ["@babel/plugin-transform-class-properties", { "loose": true }],
+        ["@babel/plugin-transform-optional-chaining", { "loose": true }],
+        ["@babel/plugin-transform-private-methods", { "loose": true }],
         [
             'module-resolver',
             {
