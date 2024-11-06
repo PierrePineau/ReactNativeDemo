@@ -3,7 +3,8 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@/*": ["./src/*"] // Add relative path
+            "@/*": ["./src/*"], // Add relative path
+            "@env": ["node_modules/react-native-dotenv"]
         }
     },
     "include": [ "src", "components" ]

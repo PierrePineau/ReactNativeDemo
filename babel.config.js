@@ -9,6 +9,14 @@ module.exports = {
         ["@babel/plugin-transform-optional-chaining", { "loose": true }],
         ["@babel/plugin-transform-private-methods", { "loose": true }],
         [
+            'module:react-native-dotenv', {
+              "moduleName": "@env",
+              "path": ".env",
+              "safe": false,
+              "allowUndefined": true
+            }
+        ],
+        [
             'module-resolver',
             {
                 root: ['./src'],
@@ -17,6 +25,6 @@ module.exports = {
                     '@/components': './src/components',
                 },
             },
-        ],
+        ]
     ],
 };

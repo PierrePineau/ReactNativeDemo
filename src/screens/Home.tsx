@@ -41,12 +41,12 @@ export default function Home(): React.JSX.Element {
             <Box className='bg-white dark:bg-black'>
                 <Box className="absolute z-20 my-4 left-0 right-0 flex items-center">
                     <HStack className='relative rounded-full mx-4 flex p-1 overflow-hidden'>
-                        <BlurView
+                        {/* <BlurView
                             style={{position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, opacity: 0.6}}
                             blurType="light"
                             blurAmount={10}
                             reducedTransparencyFallbackColor="white"
-                        />
+                        /> */}
                         <Box className='absolute z-10 left-0 right-0 top-0 bottom-0 bg-secondary-500 opacity-60' />
                         <Box className='relative z-20'>
                             <FlatList

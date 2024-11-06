@@ -1,12 +1,11 @@
 # Authentification API
 
-https://www.themoviedb.org/settings/api
+Créer un fichier .env à la racine du projet et ajouter les variables suivantes
 
-KEY API
-6c1679b3647463ffa4716723d357cc7a
-
-TOKEN API 
-eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2YzE2NzliMzY0NzQ2M2ZmYTQ3MTY3MjNkMzU3Y2M3YSIsIm5iZiI6MTcyODk3ODI3NC45ODc3NDksInN1YiI6IjY3MGUxYzk3ZjU4YTkyMDZhYTQxY2VkZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-yZo9yjxdUSLHMiJhLnOsxn8bC5a4jkXq7pUIqKjH3E 
+```
+API_URL="https://api.themoviedb.org/3"
+API_TOKEN="YOUR_API_TOKEN"
+```
 
 # Note
 
