@@ -32,7 +32,7 @@ const Category = ({title, filters}: any) => {
         <Box>
             <HStack
                 reversed={false}
-                className="flex justify-between items-center mb-8">
+                className="flex justify-between items-center mb-4">
                 <Box className="">
                     <Heading size="xl" className="dark:text-white">
                         {title}

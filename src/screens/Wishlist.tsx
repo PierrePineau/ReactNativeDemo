@@ -1,15 +1,11 @@
+import Layout from '@/components/Layout';
 import { Box } from '@/components/ui/box';
-import { Button, ButtonText } from '@/components/ui/button';
 import React from 'react';
 import {
   ScrollView,
   StyleSheet,
-  useColorScheme,
 } from 'react-native';
 
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
 
 const styles = StyleSheet.create({
     sectionContainer: {
@@ -33,20 +29,33 @@ const styles = StyleSheet.create({
 });
 
 export default function Wishlist(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
         <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            decelerationRate="fast">
-            <Box className="bg-white dark:bg-black min-h-full">
-                {/* <Layout>
-                </Layout> */}
-            </Box>
-        </ScrollView>
+        contentInsetAdjustmentBehavior="automatic"
+        decelerationRate="fast">
+        <Box className="bg-white dark:bg-black min-h-full">
+            <Layout>
+                {/* // On va chercher une image en local  */}
+                {/* <Splide aria-label="My Favorite Images">
+                <SplideSlide>
+                    <Image
+                        size="md"
+                        source={require('@/assets/images/home.png')}
+                        alt="image"
+                        className="w-full h-96 object-cover object-center"
+                    />
+                </SplideSlide>
+                <SplideSlide>
+                    <Image
+                        size="md"
+                        source={require('@/assets/images/home.png')}
+                        alt="image"
+                        className="w-full h-96 object-cover object-center"
+                    />
+                </SplideSlide>
+            </Splide> */}
+            </Layout>
+        </Box>
+    </ScrollView>
   );
 }
