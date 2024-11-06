@@ -41,7 +41,7 @@ import { VStack } from '@/components/ui/vstack';
 export default function Login() {
     const [isInvalid, setIsInvalid] = React.useState(false);
     const [passwordValue, setPasswordValue] = React.useState('');
-    const { login } = useContext(AuthContext);
+    const { login, isBiometricSupported, biometricLogin } = useContext(AuthContext);
 
     // Email
     const [isEmailInvalid, setIsEmailInvalid] = React.useState(false);
@@ -61,6 +61,10 @@ export default function Login() {
         // Tu peux mettre ici ta logique d'authentification
         // Par exemple, si username === 'admin', tu peux appeler login avec un token
         login({emailValue, passwordValue}); // Simuler un login
+    };
+
+    const handleBiometric = async () => {
+        biometricLogin();
     };
 
     return (
@@ -123,6 +127,14 @@ export default function Login() {
                         onPress={handleSubmit}>
                         <ButtonText>Connexion</ButtonText>
                     </Button>
+                    {isBiometricSupported && (
+                        <Button
+                            className="btn mt-4 h-auto"
+                            size="lg"
+                            onPress={handleBiometric}>
+                            <ButtonText>Connexion with biometrics</ButtonText>
+                        </Button> 
+                    )}
                     <Button
                         action='secondary'
                         className="btn mt-4 h-auto"

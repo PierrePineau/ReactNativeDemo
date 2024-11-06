@@ -2,7 +2,6 @@ import React, {createContext, useContext, useState} from 'react';
 import './global.css';
 import type {PropsWithChildren} from 'react';
 import {
-    SafeAreaView,
     ScrollView,
     StyleSheet,
     useColorScheme,
@@ -19,7 +18,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {GluestackUIProvider} from './src/components/ui/gluestack-ui-provider';
 import {enableScreens} from 'react-native-screens';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {AuthContext, AuthProvider} from './src/providers/AuthProvider';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { FavouriteIcon, Icon, PlayIcon, SearchIcon, SettingsIcon } from './src/components/ui/icon';
@@ -170,13 +169,15 @@ export default function App(): React.JSX.Element {
 
     return (
         <SafeAreaProvider>
-            <GluestackUIProvider mode={colorMode}>
-                <NavigationContainer>
-                    <AuthProvider>
-                        <AuthNavigator />
-                    </AuthProvider>
-                </NavigationContainer>
-            </GluestackUIProvider>
+            <SafeAreaView style={{ flex: 1}}>
+                <GluestackUIProvider mode={colorMode}>
+                    <NavigationContainer>
+                        <AuthProvider>
+                            <AuthNavigator />
+                        </AuthProvider>
+                    </NavigationContainer>
+                </GluestackUIProvider>
+            </SafeAreaView>
         </SafeAreaProvider>
     );
 }
